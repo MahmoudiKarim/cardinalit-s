@@ -91,9 +91,36 @@ class controlleur extends Controller
 
     }
 
+    public function ManytoMany1(){
+
+        try{
+            DB::beginTransaction();
+            $e= etudiant::where('numE', 2)->first();
+            $e->MATIERE()->attach([1=>['note'=>15], 2=>['note'=>17]]);
+            DB::commit();
+        }
+        catch(\PDOException $e) {
+            DB::rollback();
+        }
+
+    }
+
     
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+//l'expressions des besoins. merise, ach ste3melti. les screenshots a les parties importantes 
     
     
 
