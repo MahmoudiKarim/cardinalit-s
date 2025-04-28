@@ -90,6 +90,18 @@ class controlleur extends Controller
         }
 
     }
+    public function ManyTOManyToOne(){
+            try{
+                DB::beginTransaction();
+                $e=etudiant::where('numE',1)->first();
+                $e->MATIERE()->attach(1, ['note'=>14]);
+                // $e->MATIERE()->updateExistingPivot(1, ['note'=>10]);
+                // $e->MATIERE()->detach([1,2]);
+                DB::commit();
+            } catch(\PDOException $e) {
+                DB::rollback();
+            }
+    }
 
     
 
